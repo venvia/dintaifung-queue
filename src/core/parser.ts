@@ -26,19 +26,6 @@ export interface QueueGroupText {
 const PERSON_LABELS = ["1~2人", "3~4人", "5~6人", "7人以上"] as const;
 
 /**
- * 從多個群組文字中解析叫號號碼
- *
- * 每個 QueueGroupText 的 text 欄位可能包含以換行或空格分隔的多個號碼。
- * 此函數會將所有有效的號碼收集為一個扁平的 Record，
- * 鍵為 `group_0`、`group_1` …，值為該群組最後一個有效號碼。
- *
- * - 空字串、僅空白、`"-"` 的項目會被跳過
- * - 若一個群組內有多個有效號碼，取最後一個作為代表
- *
- * @param groups 從 DOM 提取的叫號群組文字陣列
- * @returns 群組索引 → 叫號號碼 的對應表
- */
-/**
  * 從 DOM col-3 群組文字中解析叫號號碼
  *
  * 每個 QueueGroupText 的 text 欄位通常為「號碼\n人數描述」格式，
@@ -110,7 +97,14 @@ export function parseTakeoutNumber(text: string): string | null {
  * @returns 標準化的 QueueResult
  */
 export function normalizeApiResponse(payload: unknown, branchName: string): QueueResult {
-  if (!payload || typeof payload !== "object") {
+  // 若 payload 是陣列，取第一個元素
+  const data = Array.isArray(payload)
+    ? payload[0]
+    : typeof payload === "object" && payload !== null
+      ? (payload as Record<string, unknown>)
+      : null;
+
+  if (!data || typeof data !== "object") {
     return {
       branch: branchName,
       timestamp: new Date().toISOString(),
@@ -119,8 +113,6 @@ export function normalizeApiResponse(payload: unknown, branchName: string): Queu
       source: "api",
     };
   }
-
-  const data = payload as Record<string, unknown>;
 
   // 叫號號碼：支援 dingNumber1~4 與 num_1~4 兩種命名風格
   const numbers: QueueNumbers = {};

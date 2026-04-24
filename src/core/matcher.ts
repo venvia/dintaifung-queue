@@ -20,41 +20,34 @@ export function normalizeBranchLabel(label: string): string {
 /**
  * 在門市對照表中查找目標門市
  *
- * 比對策略由嚴到寬，依序嘗試：
- * 1. **精確比對** — 使用者輸入的字串直接作為 key 存在
- * 2. **標準化比對** — 將 mapping 中所有 value 標準化後與輸入比對
- * 3. **模糊比對** — 標準化後，檢查 value 是否「包含」輸入字串
+ * mapping 的 key 為門市名稱（可能含斜線分隔的英文名稱），
+ * value 為 storeId。
  *
- * @param mapping - 門市對照表（key 為內部 ID，value 為門市名稱）
+ * 比對策略由嚴到寬：
+ * 1. 精確比對 key
+ * 2. 標準化 key 後比對
+ * 3. 標準化 key 後的包含比對（模糊）
+ *
+ * @param mapping - 門市對照表（key 為門市名稱，value 為 storeId）
  * @param targetBranch - 使用者輸入的門市關鍵字
- * @returns 比對成功回傳 {@link ResolvedStore}，失敗回傳 `null`
+ * @returns 比對成功回傳 ResolvedStore，失敗回傳 null
  */
 export function findStoreId(
-	mapping: BranchMapping,
-	targetBranch: string,
+  mapping: BranchMapping,
+  targetBranch: string,
 ): ResolvedStore | null {
-	const trimmed = targetBranch.trim();
+  // 第一階段：精確比對
+  if (mapping[targetBranch]) {
+    return { storeId: mapping[targetBranch], matchedLabel: targetBranch };
+  }
 
-	// --- 第一階段：精確比對 ---
-	for (const [storeId, label] of Object.entries(mapping)) {
-		if (label === trimmed) {
-			return { storeId, matchedLabel: label };
-		}
-	}
+  // 第二階段：標準化後比對
+  for (const [label, storeId] of Object.entries(mapping)) {
+    const normalized = normalizeBranchLabel(label);
+    if (normalized === targetBranch || normalized.includes(targetBranch) || targetBranch.includes(normalized)) {
+      return { storeId, matchedLabel: normalized };
+    }
+  }
 
-	// --- 第二階段：標準化後精確比對 ---
-	for (const [storeId, label] of Object.entries(mapping)) {
-		if (normalizeBranchLabel(label) === trimmed) {
-			return { storeId, matchedLabel: label };
-		}
-	}
-
-	// --- 第三階段：模糊比對（包含） ---
-	for (const [storeId, label] of Object.entries(mapping)) {
-		if (normalizeBranchLabel(label).includes(trimmed)) {
-			return { storeId, matchedLabel: label };
-		}
-	}
-
-	return null;
+  return null;
 }
