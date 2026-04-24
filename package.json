@@ -1,0 +1,64 @@
+{
+  "name": "dintaifung-queue-skill",
+  "version": "1.0.0",
+  "description": "鼎泰豐叫號查詢技能 — 自動抓取門市叫號號碼與等候時間",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "dintaifung-queue": "./bin/dintaifung-queue"
+  },
+  "files": [
+    "dist/",
+    "bin/",
+    "SKILL.md",
+    "README.md",
+    "README.zh-TW.md",
+    "docs/"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "tsx src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish"
+  },
+  "keywords": [
+    "dintaifung",
+    "鼎泰豐",
+    "queue",
+    "叫號",
+    "restaurant",
+    "playwright",
+    "automation",
+    "openclaw",
+    "skill"
+  ],
+  "author": "Roy Chuang <roy@venvia.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:venvia/dintaifung-queue-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/venvia/dintaifung-queue-skill/issues"
+  },
+  "homepage": "https://github.com/venvia/dintaifung-queue-skill#readme",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "playwright": "^1.40.1"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.0",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vitest": "^2.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.monitor-state.json
+.env
+coverage/
+*.log
+.DS_Store
