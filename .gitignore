@@ -7,3 +7,6 @@ coverage/
 *.log
 .DS_Store
 .claw/
+.sandbox-home/
+.sandbox-tmp/
+.claw/

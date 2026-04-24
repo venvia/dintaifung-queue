@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+const { spawn } = require("child_process");
+const path = require("path");
+
+const tsxCli = require.resolve("tsx/cli", { paths: [__dirname] });
+const srcIndex = path.join(__dirname, "..", "src", "index.ts");
+
+const child = spawn("node", ["--import", tsxCli, srcIndex, ...process.argv.slice(2)], {
+  stdio: "inherit",
+});
+
+child.on("close", (code) => process.exit(code || 0));
