@@ -21,7 +21,7 @@ export async function withBrowser<T>(callback: (page: Page) => Promise<T>): Prom
 /** 在頁面中找出包含門市 <select> 的 frame */
 export async function resolveQueueFrame(page: Page, debug = false): Promise<Frame> {
   await page.goto(TARGET_URL, { waitUntil: "networkidle", timeout: 30000 });
-  await page.waitForTimeout(3000);
+  await page.waitForSelector("select", { state: "visible", timeout: 10000 });
 
   const frames = page.frames();
   if (debug) console.log(`DEBUG frames=${frames.length}`);
@@ -84,8 +84,8 @@ export async function extractQueueData(
       ?.dispatchEvent(new Event("change", { bubbles: true }));
   });
 
-  // 等待頁面 AJAX 更新
-  await page.waitForTimeout(4000);
+  // 等待頁面 AJAX 更新 — 用 selector 取代固定延遲
+  await frame.waitForSelector("#dingBlock, #waitTime", { state: "visible", timeout: 10000 });
 
   // 序列化 DOM 資料回傳
   const rawData = await frame.evaluate(
