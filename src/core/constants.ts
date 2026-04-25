@@ -1,4 +1,4 @@
-import type { PollTier } from "../types/monitor.js";
+import type { PollTier } from "../types/monitor";
 
 /**
  * 鼎泰豐叫號頁面目標 URL
@@ -12,7 +12,7 @@ export const TARGET_URL = "https://www.dintaifung.tw/Queue/?type=3";
  *
  * 鼎泰豐內部叫號 API 的 IP 位址。
  */
-export const API_HOST = "60.251.113.234";
+export const API_HOST = process.env.DINTAIFUNG_API_HOST ?? "60.251.113.234";
 
 /**
  * 叫號 API 端點路徑

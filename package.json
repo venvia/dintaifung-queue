@@ -41,12 +41,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:venvia/dintaifung-queue-skill.git"
+    "url": "git@github.com:venvia/dintaifung-queue.git"
   },
   "bugs": {
-    "url": "https://github.com/venvia/dintaifung-queue-skill/issues"
+    "url": "https://github.com/venvia/dintaifung-queue/issues"
   },
-  "homepage": "https://github.com/venvia/dintaifung-queue-skill#readme",
+  "homepage": "https://github.com/venvia/dintaifung-queue#readme",
   "dependencies": {
     "commander": "^12.1.0",
     "playwright": "^1.40.1"

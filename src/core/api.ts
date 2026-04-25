@@ -64,13 +64,13 @@ export function queryApi(storeId: string): Promise<unknown> {
 
           if (encoding === "gzip") {
             zlib.gunzip(buffer, (err, result) => {
-              if (err) reject(err);
-              else parseJson(result);
+              if (err) { reject(err); return; }
+              parseJson(result);
             });
           } else if (encoding === "deflate") {
             zlib.inflate(buffer, (err, result) => {
-              if (err) reject(err);
-              else parseJson(result);
+              if (err) { reject(err); return; }
+              parseJson(result);
             });
           } else {
             parseJson(buffer);
