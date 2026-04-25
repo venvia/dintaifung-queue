@@ -1,6 +1,6 @@
 import https from "node:https";
 import zlib from "node:zlib";
-import { API_HOST, API_PATH } from "./constants";
+import { API_HOST, API_PATH } from "./constants.js";
 
 /** 建立 multipart/form-data 請求主體 */
 export function buildMultipartBody(storeId: string): { boundary: string; body: string } {

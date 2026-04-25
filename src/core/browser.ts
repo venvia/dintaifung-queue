@@ -1,6 +1,6 @@
 import { chromium, type Frame, type Page } from "playwright";
-import { TARGET_URL, USER_AGENT } from "./constants";
-import type { BranchMapping, QueueNumbers } from "../types";
+import { TARGET_URL, USER_AGENT } from "./constants.js";
+import type { BranchMapping, QueueNumbers } from "../types/index.js";
 
 /** 啟動 Chromium、執行 callback 後自動關閉瀏覽器 */
 export async function withBrowser<T>(callback: (page: Page) => Promise<T>): Promise<T> {
@@ -112,7 +112,7 @@ export async function extractQueueData(
     },
   );
 
-  const { parseQueueNumbersFromGroups, parseTakeoutNumber } = await import("./parser");
+  const { parseQueueNumbersFromGroups, parseTakeoutNumber } = await import("./parser.js");
   const numbers = parseQueueNumbersFromGroups(rawData.groups);
   const takeout = parseTakeoutNumber(rawData.takeoutText);
   if (takeout) numbers["外帶"] = takeout;

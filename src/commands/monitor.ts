@@ -1,7 +1,7 @@
-import { withBrowser, resolveQueueFrame, extractQueueData } from "../core/browser";
-import { loadState, saveState, clearState } from "../utils/state";
-import { POLL_TIERS, NOTIFY_THRESHOLDS } from "../core/constants";
-import type { MonitorState, PollTier, NotificationPayload } from "../types";
+import { withBrowser, resolveQueueFrame, extractQueueData } from "../core/browser.js";
+import { loadState, saveState, clearState } from "../utils/state.js";
+import { POLL_TIERS, NOTIFY_THRESHOLDS } from "../core/constants.js";
+import type { MonitorState, PollTier, NotificationPayload } from "../types/index.js";
 
 /** 根據差距組數決定輪詢間隔 */
 export function getInterval(gap: number): PollTier {

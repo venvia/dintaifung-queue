@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { buildMultipartBody } from "../../src/core/api";
+import { buildMultipartBody } from "../../src/core/api.js";
 
 describe("buildMultipartBody", () => {
   it("contains the correct storeId field", () => {

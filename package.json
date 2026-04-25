@@ -2,6 +2,7 @@
   "name": "dintaifung-queue-skill",
   "version": "1.0.0",
   "description": "鼎泰豐叫號查詢技能 — 自動抓取門市叫號號碼與等候時間",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {

@@ -2,8 +2,8 @@ import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { loadState, saveState, clearState } from "../../src/utils/state";
-import type { MonitorState } from "../../src/types";
+import { loadState, saveState, clearState } from "../../src/utils/state.js";
+import type { MonitorState } from "../../src/types/index.js.js";
 
 function tempPath(): string {
   return path.join(

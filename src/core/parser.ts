@@ -7,7 +7,7 @@
  * 官方 API JSON 回應）統一轉換為標準化的 QueueResult 格式。
  */
 
-import type { QueueResult, QueueNumbers } from "../types";
+import type { QueueResult, QueueNumbers } from "../types/index.js";
 
 /**
  * 叫號群組文字區塊
