@@ -1,7 +1,7 @@
 import { Command } from "commander";
-import { runQuery } from "./commands/query";
-import { runList } from "./commands/list";
-import { runMonitorInit, runMonitorCheck, runMonitorStatus, runMonitorStop } from "./commands/monitor";
+import { runQuery } from "./commands/query.js";
+import { runList } from "./commands/list.js";
+import { runMonitorInit, runMonitorCheck, runMonitorStatus, runMonitorStop } from "./commands/monitor.js";
 
 const program = new Command();
 

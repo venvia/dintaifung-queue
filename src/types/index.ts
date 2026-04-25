@@ -4,9 +4,9 @@
  * 匯出所有型號定義，供其他模組統一引入
  */
 
-export * from "./queue";
-export * from "./branch";
-export * from "./monitor";
+export * from "./queue.js";
+export * from "./branch.js";
+export * from "./monitor.js";
 
 /** CLI 命令列選項 */
 export interface CliOptions {

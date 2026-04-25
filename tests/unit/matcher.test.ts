@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { normalizeBranchLabel, findStoreId } from "../../src/core/matcher";
+import { normalizeBranchLabel, findStoreId } from "../../src/core/matcher.js";
 
 describe("normalizeBranchLabel", () => {
   it("single name returns as-is", () => {

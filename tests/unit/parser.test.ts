@@ -3,7 +3,7 @@ import {
   parseQueueNumbersFromGroups,
   parseTakeoutNumber,
   normalizeApiResponse,
-} from "../../src/core/parser";
+} from "../../src/core/parser.js";
 
 describe("parseQueueNumbersFromGroups", () => {
   it("parses newline-separated groups", () => {

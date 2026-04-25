@@ -1,4 +1,4 @@
-import type { BranchMapping, ResolvedStore } from "../types";
+import type { BranchMapping, ResolvedStore } from "../types/index.js";
 
 /**
  * 標準化門市標籤

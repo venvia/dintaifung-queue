@@ -1,4 +1,4 @@
-import type { PollTier } from "../types/monitor";
+import type { PollTier } from "../types/monitor.js";
 
 /**
  * 鼎泰豐叫號頁面目標 URL

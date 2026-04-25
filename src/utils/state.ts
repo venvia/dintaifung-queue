@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
-import type { MonitorState } from "../types";
+import type { MonitorState } from "../types/index.js";
 
 /** 預設狀態檔路徑（~/.local/share/dintaifung-queue/） */
 const DATA_DIR = path.join(os.homedir(), ".local", "share", "dintaifung-queue");

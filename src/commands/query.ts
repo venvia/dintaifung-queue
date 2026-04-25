@@ -1,9 +1,9 @@
-import { withBrowser, resolveQueueFrame, extractQueueData } from "../core/browser";
-import { queryApi } from "../core/api";
-import { normalizeApiResponse } from "../core/parser";
-import { findStoreId, normalizeBranchLabel } from "../core/matcher";
-import { log, printResult, exitWithError } from "../utils/cli";
-import type { QueueResult } from "../types";
+import { withBrowser, resolveQueueFrame, extractQueueData } from "../core/browser.js";
+import { queryApi } from "../core/api.js";
+import { normalizeApiResponse } from "../core/parser.js";
+import { findStoreId, normalizeBranchLabel } from "../core/matcher.js";
+import { log, printResult, exitWithError } from "../utils/cli.js";
+import type { QueueResult } from "../types/index.js";
 
 /** 用 Playwright 直接解析 DOM 取得叫號結果 */
 async function queryViaPlaywright(branchName: string, debug: boolean): Promise<QueueResult> {
@@ -33,7 +33,7 @@ export async function runQuery(
     // Step 1：取得門市對照表
     const mapping = await withBrowser(async (page) => {
       const frame = await resolveQueueFrame(page, debug);
-      return (await import("../core/browser")).extractBranchMapping(frame);
+      return (await import("../core/browser.js")).extractBranchMapping(frame);
     });
 
     const branches = Object.keys(mapping);

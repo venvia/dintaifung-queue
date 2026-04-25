@@ -1,4 +1,4 @@
-import type { QueueResult } from "../types";
+import type { QueueResult } from "../types/index.js";
 
 /** 僅在非 JSON 模式下輸出訊息 */
 export function log(message = "", isJson = false): void {
